@@ -1,0 +1,27 @@
+@import '../../commons/styles/colors';
+
+.navbar {
+  background-color: $bg-color;
+  color: $fg-color;
+
+  &__logo {
+    user-select: none;
+  }
+
+  &__company-name {
+    font-size: 0.7em;
+  }
+
+  &__signin {
+    color: $fg-color;
+    border: 1px solid $fg-color;
+    border-radius: 5px;
+    padding: 0px 5px;
+
+    &:hover {
+      color: $bg-color;
+      background-color: $fg-color;
+    }
+  }
+
+}
