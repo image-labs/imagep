@@ -2,33 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app/app';
 import * as serviceWorker from './commons/utils/service-worker';
-import { Auth0Provider } from "./commons/utils/auth0";
-import config from './configs/auth0.json';
 
 import './index.scss';
 
-const onRedirectCallback = appState => {
-  window.history.replaceState(
-    {},
-    document.title,
-    appState && appState.targetUrl
-      ? appState.targetUrl
-      : window.location.pathname
-  );
-};
-
-// Todo: Move the configuration and call back to auth0.js
-ReactDOM.render(
-  <Auth0Provider
-    domain={config.domain}
-    client_id={config.clientId}
-    connection={"github"}
-    redirect_uri={window.location.origin}
-    onRedirectCallback={onRedirectCallback}>
-    <App />
-  </Auth0Provider>,
-  document.getElementById("root")
-);
+ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
