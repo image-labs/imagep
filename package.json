@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://imagep.org",
   "dependencies": {
+    "@reach/router": "^1.2.1",
     "bootstrap": "^4.3.1",
     "font-awesome": "^4.7.0",
     "gh-pages": "^2.1.1",
