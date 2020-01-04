@@ -1,0 +1,12 @@
+@import '../../commons/styles/colors';
+
+.sign-in {
+  color: $bg-color;
+  padding: 10px;
+
+  user-select: none;
+
+  .fa {
+    margin: 0 10px;
+  }
+}

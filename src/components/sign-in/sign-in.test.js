@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Navbar from './navbar';
+import SignIn from './sign-in';
 
 it('Renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<Navbar />, div);
+  ReactDOM.render(<SignIn />, div);
   ReactDOM.unmountComponentAtNode(div);
 });

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './your.scss';
+import './your-functions.scss';
 
 function Your() {
   return (

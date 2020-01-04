@@ -1,19 +1,33 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+import SignInButton from '../sign-in-button/sign-in-button';
+import UserMenu from '../user-menu/user-menu';
+
 import './navbar.scss';
 
-function Navbar() {
+const SIGN_IN_PATH = "/signin";
+
+function Navbar(props) {
+  let userControls;
+
+  if(props.currentUser) {
+    userControls = <UserMenu currentUser={props.currentUser}/>;
+  } else if(window.location.pathname !== SIGN_IN_PATH) {
+    userControls = <SignInButton/>;
+  }
+
   return (
     <div className="navbar">
       <span className="navbar__logo">
         <strong>ImageP</strong>
         <span className="navbar__company-name"> by ImageLabs</span>
-        </span>
+      </span>
 
-      <a href="/" className="navbar__signin">
-        <i className="fa fa-github"></i> Sign in
-      </a>
+      {userControls}
     </div>
   );
 }
 
-export default Navbar;
+const mapStateToProps = state => ({ currentUser: state.currentUser });
+export default connect(mapStateToProps)(Navbar);

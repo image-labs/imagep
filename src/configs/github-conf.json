@@ -1,0 +1,15 @@
+{
+  "apiDomain": "https://api.github.com",
+  "auth": {
+    "dev": {
+      "clientId": "f13f3e45b57022b4c556",
+      "authorizeURL": "https://github.com/login/oauth/authorize",
+      "accessURL": "https://us-central1-imagep.cloudfunctions.net/github-auth-dev"
+    },
+    "prod": {
+      "clientId": "3cc05cf4699e4a9e3096",
+      "authorizeURL": "https://github.com/login/oauth/authorize",
+      "accessURL": "https://us-central1-imagep.cloudfunctions.net/github-auth"
+    }
+  }
+}

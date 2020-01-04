@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Starred from './starred';
+import YourFunctions from './your-functions';
 
-it('renders without crashing', () => {
+it('Renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<Starred />, div);
+  ReactDOM.render(<YourFunctions />, div);
   ReactDOM.unmountComponentAtNode(div);
 });

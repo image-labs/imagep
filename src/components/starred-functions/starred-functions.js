@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './starred.scss';
+import './starred-functions.scss';
 
 function Starred() {
   return (
