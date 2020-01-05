@@ -21,7 +21,7 @@ class SignIn extends React.Component {
   }
 
   init(props) {
-    let params = (new URLSearchParams(props.location.search));
+    let params = (new URLSearchParams(window.location.search));
     signIn(params.get("code"), params.get("state"))
     .then(auth => {
       this.setSignInStatus(STATUS.SUCCESS);
