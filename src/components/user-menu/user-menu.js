@@ -23,8 +23,9 @@ class UserMenu extends React.Component {
           </Dropdown.Toggle>
 
           <Dropdown.Menu>
-            <Dropdown.Item href="/your">Your Functions</Dropdown.Item>
-            <Dropdown.Item href="/starred">Starred Functions</Dropdown.Item>
+            <Dropdown.Item href="#/your">Your Functions</Dropdown.Item>
+            <Dropdown.Item href="#/starred">Starred Functions</Dropdown.Item>
+            <Dropdown.Item href="#/gallery">Gallery</Dropdown.Item>
             <Dropdown.Divider/>
             <Dropdown.Item onClick={signOut}>Sign Out</Dropdown.Item>
           </Dropdown.Menu>

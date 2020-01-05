@@ -24,7 +24,7 @@ function Navbar(props) {
   return (
     <div className="navbar">
       <span className="navbar__logo">
-        <strong>ImageP</strong>
+        <a href="/#/">ImageP</a>
         <span className="navbar__company-name"> by ImageLabs</span>
       </span>
 

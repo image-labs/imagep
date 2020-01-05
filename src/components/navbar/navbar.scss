@@ -7,6 +7,14 @@
 
   &__logo {
     user-select: none;
+
+    a {
+      font-weight: bold;
+
+      &:hover {
+        color: $mg-color;
+      }
+    }
   }
 
   &__company-name {

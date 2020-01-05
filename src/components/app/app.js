@@ -1,11 +1,13 @@
 import React from 'react';
-import { Router } from "@reach/router"
+import { HashRouter, Route } from "react-router-dom";
 
 import Navbar from '../navbar/navbar';
+import SignIn from '../sign-in/sign-in';
+
 import Home from '../home/home';
 import Starred from '../starred-functions/starred-functions';
 import Your from '../your-functions/your-functions';
-import SignIn from '../sign-in/sign-in';
+import Gallery from '../gallery/gallery';
 
 import './app.scss';
 
@@ -13,15 +15,16 @@ function App() {
   return (
       <div className="app">
         <Navbar />
-        <Router>
+        <HashRouter basename='/'>
 
-          <Home path="/"/>
-          <Starred path="starred"/>
-          <Your path="your"/>
+          <Route exact path="/" component={Home} />
+          <Route path="/starred" component={Starred} />
+          <Route path="/your" component={Your} />
+          <Route path="/gallery" component={Gallery} />
 
-          <SignIn path="signin"/>
+          <Route path="/signin" component={SignIn} />
 
-        </Router>
+        </HashRouter>
       </div>
   );
 }
