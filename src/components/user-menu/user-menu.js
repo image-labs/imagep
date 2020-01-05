@@ -1,9 +1,7 @@
 import React from 'react';
 import Dropdown from 'react-bootstrap/Dropdown'
-import { connect } from 'react-redux';
 
 import { signOut } from '../../commons/utils/github-auth';
-import currentUserReducer from '../../commons/reducers/current-user';
 
 import './user-menu.scss';
 
@@ -12,11 +10,6 @@ class UserMenu extends React.Component {
     super(props);
 
     this.state = {
-    };
-
-    this.signOutUser = () => {
-      this.props.userActions.reset();
-      signOut();
     };
   }
 
@@ -33,7 +26,7 @@ class UserMenu extends React.Component {
             <Dropdown.Item href="/your">Your Functions</Dropdown.Item>
             <Dropdown.Item href="/starred">Starred Functions</Dropdown.Item>
             <Dropdown.Divider/>
-            <Dropdown.Item onClick={this.signOutUser}>Sign Out</Dropdown.Item>
+            <Dropdown.Item onClick={signOut}>Sign Out</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </div>
@@ -41,5 +34,4 @@ class UserMenu extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({ userActions: currentUserReducer.getActions(dispatch) });
-export default connect(null, mapDispatchToProps)(UserMenu);
+export default UserMenu;

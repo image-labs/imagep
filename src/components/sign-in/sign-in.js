@@ -42,8 +42,7 @@ class SignIn extends React.Component {
     switch(authStatus) {
       case STATUS.IN_PROGRESS:
         return (
-          <div className="alert alert-info">
-            <strong>ImageP</strong>
+          <div>
             <i className="fa fa-spinner fa-spin" aria-hidden="true"></i>
             Signing into GitHub...
           </div>
@@ -52,7 +51,6 @@ class SignIn extends React.Component {
       case STATUS.SUCCESS:
         return (
           <div className="alert alert-success">
-            <strong>ImageP</strong>
             <i className="fa fa-check-circle-o" aria-hidden="true"></i>
             Signed into GitHub successfully!
           </div>
@@ -61,7 +59,6 @@ class SignIn extends React.Component {
       case STATUS.FAILURE:
         return (
           <div className="alert alert-danger">
-            <strong>ImageP</strong>
             <i className="fa fa-exclamation-triangle" aria-hidden="true"></i>
             Signing into GitHub failed!
           </div>
@@ -70,7 +67,6 @@ class SignIn extends React.Component {
       default:
         return (
           <div className="alert alert-info">
-            <strong>ImageP</strong>
             <i className="fa fa-exclamation-triangle" aria-hidden="true"></i>
             Not signed into GitHub!
           </div>
@@ -82,6 +78,7 @@ class SignIn extends React.Component {
     const message = this.getMessage(this.state.signInStatus);
     return (
       <div className="sign-in">
+        <i className="fa fa-5x fa-github"></i>
         {message}
       </div>
     );

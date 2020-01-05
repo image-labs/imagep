@@ -12,7 +12,11 @@ function Navbar(props) {
   let userControls;
 
   if(props.currentUser) {
-    userControls = <UserMenu currentUser={props.currentUser}/>;
+    if(props.currentUser.isLoading) {
+      userControls = <i className="fa fa-spinner fa-spin" aria-hidden="true"></i>;
+    } else {
+      userControls = <UserMenu currentUser={props.currentUser}/>;
+    }
   } else if(window.location.pathname !== SIGN_IN_PATH) {
     userControls = <SignInButton/>;
   }

@@ -55,12 +55,17 @@ function signOut() {
   setAccessToken();
 }
 
-function setAccessToken(token) {
-  localStorage.setItem(LS_ACCESS_TOKEN_KEY, (typeof token === "string") ? token : "");
-}
-
 function getAccessToken() {
   return localStorage.getItem(LS_ACCESS_TOKEN_KEY);
+}
+
+function setAccessToken(token) {
+  token = (typeof token === "string") ? token : "";
+  localStorage.setItem(LS_ACCESS_TOKEN_KEY, token);
+  window.dispatchEvent(new StorageEvent('storage', {
+    key: LS_ACCESS_TOKEN_KEY,
+    newValue: token
+  }));
 }
 
 function addAccessTokenListener(handler) {
