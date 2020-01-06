@@ -17,7 +17,7 @@ function Navbar(props) {
     } else {
       userControls = <UserMenu currentUser={props.currentUser}/>;
     }
-  } else if(window.location.pathname !== SIGN_IN_PATH) {
+  } else if(window.location.hash.indexOf(SIGN_IN_PATH) === -1) {
     userControls = <SignInButton/>;
   }
 
