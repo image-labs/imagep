@@ -22,14 +22,14 @@ function Navbar(props) {
   }
 
   return (
-    <div className="navbar">
-      <span className="navbar__logo">
+    <header className="navbar">
+      <span className="logo">
         <a href="/#/">ImageP</a>
-        <span className="navbar__company-name"> by ImageLabs</span>
+        <span className="company-name"> by ImageLabs</span>
       </span>
 
       {userControls}
-    </div>
+    </header>
   );
 }
 

@@ -1,0 +1,69 @@
+@import '../../commons/styles/colors.scss';
+
+$duration: 0.2s;
+
+.panel {
+  height: 100%;
+  background-color: $grey-2;
+  border-top: 1px solid $grey-2;
+  &:first-child {
+    border-top: none;
+  }
+
+  transition: height $duration ease-in-out;
+
+  .panel-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    height: 32px;
+    padding: 0.2rem 1rem;
+
+    color: $fg-color;
+    background-color: $grey-3;
+
+    .panel-name {
+      .fa {
+        display: inline-block;
+        font-size: .9em;
+        margin-right: 5px;
+        width: 15px;
+        transition: transform $duration ease-in-out;
+      }
+    }
+  }
+
+  .panel-body {
+    height: calc(100% - 32px);
+    transition-delay: $duration * 0.05;
+    transition-property: height;
+    overflow: hidden;
+    border-top: 1px solid $grey-2;
+  }
+
+  &.minimize-disabled {
+    .panel-header {
+      cursor: default;
+
+      .panel-name .fa {
+        display: none;
+      }
+    }
+  }
+
+  &.minimized {
+    height: 32px;
+
+    .panel-body {
+      transition-delay: $duration * 0.95;
+      height: 0;
+    }
+
+    .fa-chevron-down {
+      transform: rotateZ(-90deg);
+    }
+  }
+}

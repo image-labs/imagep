@@ -4,7 +4,7 @@ import { HashRouter, Route } from "react-router-dom";
 import Navbar from '../navbar/navbar';
 import SignIn from '../sign-in/sign-in';
 
-import Home from '../home/home';
+import Editor from '../editor/editor';
 import Starred from '../starred-functions/starred-functions';
 import Your from '../your-functions/your-functions';
 import Gallery from '../gallery/gallery';
@@ -17,7 +17,7 @@ function App() {
         <Navbar />
         <HashRouter basename='/'>
 
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" component={Editor} />
           <Route path="/starred" component={Starred} />
           <Route path="/your" component={Your} />
           <Route path="/gallery" component={Gallery} />

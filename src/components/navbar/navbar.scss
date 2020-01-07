@@ -5,7 +5,7 @@
   color: $fg-color;
   height: 42px;
 
-  &__logo {
+  .logo {
     user-select: none;
 
     a {
@@ -17,7 +17,7 @@
     }
   }
 
-  &__company-name {
+  .company-name {
     font-size: 0.7em;
   }
 }
