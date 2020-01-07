@@ -16,6 +16,7 @@ $duration: 0.2s;
     display: flex;
     justify-content: space-between;
     font-weight: bold;
+    white-space: nowrap;
 
     cursor: pointer;
 
@@ -26,6 +27,7 @@ $duration: 0.2s;
     background-color: $grey-3;
 
     .panel-name {
+      margin-right: 5px;
       .fa {
         display: inline-block;
         font-size: .9em;

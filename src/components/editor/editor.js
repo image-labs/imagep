@@ -11,21 +11,36 @@ class Editor extends React.Component {
     this.state = {
       leftPanelWidth: 50
     };
+
+    this.startMouseDrag = this.startMouseDrag.bind(this);
+    this.startTouchDrag = this.startTouchDrag.bind(this);
   }
 
-  startDrag(moveEventName, endEventName) {
-    const that = this;
-    const screenSize = window.screen.width;
+  setLeftPanelWidth(pxWidth) {
+    const leftPanelWidth = (pxWidth / window.screen.width) * 100;
+    this.setState({ leftPanelWidth });
+  }
 
-    function onMouseMove(e) {
-      const mouseX = e.clientX || e.touches[0].clientX;
-      const leftPanelWidth = (mouseX / screenSize) * 100;
-      that.setState({ leftPanelWidth });
-    }
+  startMouseDrag() {
+    const onDrag = e => {
+      this.setLeftPanelWidth(e.clientX);
+    };
 
-    document.addEventListener(moveEventName, onMouseMove);
-    document.addEventListener(endEventName, e => {
-      document.removeEventListener(moveEventName, onMouseMove);
+    document.addEventListener("mousemove", onDrag);
+    document.addEventListener("mouseup", e => {
+      document.removeEventListener("mousemove", onDrag);
+    });
+  }
+
+  startTouchDrag(e) {
+    const xDelta = e.currentTarget.clientWidth - e.touches[0].clientX;
+    const onDrag = e => {
+      this.setLeftPanelWidth(e.touches[0].clientX + xDelta);
+    };
+
+    document.addEventListener("touchmove", onDrag);
+    document.addEventListener("touchend", e => {
+      document.removeEventListener("touchmove", onDrag);
     });
   }
 
@@ -47,7 +62,9 @@ class Editor extends React.Component {
         </div>
 
         <div className="editor-body">
-          <div className="left-panels" style={{width: this.state.leftPanelWidth + "%"}}>
+          <div className="left-panels"
+              style={{width: this.state.leftPanelWidth + "%"}}
+              onTouchStart={this.startTouchDrag}>
             <Panel title="Input" controls={<i className="fa fa-plus" aria-hidden="true"></i>}>
               <img src="https://www.w3schools.com/html/pic_trulli.jpg" alt="Italian Trulli"/>
             </Panel>
@@ -56,9 +73,7 @@ class Editor extends React.Component {
             </Panel>
           </div>
           <div className="panel-gutter">
-            <div className="gutter-bar"
-                onMouseDown={this.startDrag.bind(this, "mousemove", "mouseup")}
-                onTouchStart={this.startDrag.bind(this, "touchmove", "touchend")}></div>
+            <div className="gutter-bar" onMouseDown={this.startMouseDrag}></div>
           </div>
           <div className="function-code" style={{width: (100 - this.state.leftPanelWidth) + "%"}}></div>
         </div>
