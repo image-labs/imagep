@@ -11,22 +11,21 @@ class Editor extends React.Component {
     this.state = {
       leftPanelWidth: 50
     };
-
-    this.startDrag = this.startDrag.bind(this);
   }
 
-  startDrag() {
+  startDrag(moveEventName, endEventName) {
     const that = this;
     const screenSize = window.screen.width;
 
     function onMouseMove(e) {
-      const leftPanelWidth = (e.clientX / screenSize) * 100;
+      const mouseX = e.clientX || e.touches[0].clientX;
+      const leftPanelWidth = (mouseX / screenSize) * 100;
       that.setState({ leftPanelWidth });
     }
 
-    document.addEventListener("mousemove", onMouseMove);
-    document.addEventListener("mouseup", e => {
-      document.removeEventListener("mousemove", onMouseMove);
+    document.addEventListener(moveEventName, onMouseMove);
+    document.addEventListener(endEventName, e => {
+      document.removeEventListener(moveEventName, onMouseMove);
     });
   }
 
@@ -57,7 +56,9 @@ class Editor extends React.Component {
             </Panel>
           </div>
           <div className="panel-gutter">
-            <div className="gutter-bar" onMouseDown={this.startDrag}></div>
+            <div className="gutter-bar"
+                onMouseDown={this.startDrag.bind(this, "mousemove", "mouseup")}
+                onTouchStart={this.startDrag.bind(this, "touchmove", "touchend")}></div>
           </div>
           <div className="function-code" style={{width: (100 - this.state.leftPanelWidth) + "%"}}></div>
         </div>
