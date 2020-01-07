@@ -33,15 +33,17 @@ class Editor extends React.Component {
   }
 
   startTouchDrag(e) {
-    const xDelta = e.currentTarget.clientWidth - e.touches[0].clientX;
-    const onDrag = e => {
-      this.setLeftPanelWidth(e.touches[0].clientX + xDelta);
-    };
+    if(window.innerHeight < window.innerWidth){
+      const xDelta = e.currentTarget.clientWidth - e.touches[0].clientX;
+      const onDrag = e => {
+        this.setLeftPanelWidth(e.touches[0].clientX + xDelta);
+      };
 
-    document.addEventListener("touchmove", onDrag);
-    document.addEventListener("touchend", e => {
-      document.removeEventListener("touchmove", onDrag);
-    });
+      document.addEventListener("touchmove", onDrag);
+      document.addEventListener("touchend", e => {
+        document.removeEventListener("touchmove", onDrag);
+      });
+    }
   }
 
   render() {
@@ -75,7 +77,9 @@ class Editor extends React.Component {
           <div className="panel-gutter">
             <div className="gutter-bar" onMouseDown={this.startMouseDrag}></div>
           </div>
-          <div className="function-code" style={{width: (100 - this.state.leftPanelWidth) + "%"}}></div>
+          <div className="function-code" style={{width: (100 - this.state.leftPanelWidth) + "%"}}>
+            Code block
+          </div>
         </div>
       </div>
     );

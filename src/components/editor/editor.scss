@@ -1,11 +1,5 @@
 @import '../../commons/styles/colors.scss';
 
-@media (orientation: landscape) {
-  .editor {
-    height: calc(100vh - 42px);
-  }
-}
-
 .editor {
 
   .editor-header {
@@ -61,6 +55,7 @@
     }
 
     .function-code {
+      position: relative;
       width: 100%;
 
       background-color: lightblue;
@@ -68,4 +63,34 @@
 
   }
 
+}
+
+@media (orientation: landscape) {
+  .editor {
+    height: calc(100vh - 42px);
+  }
+}
+
+@media (orientation: portrait) {
+  .editor {
+    .editor-body {
+      display: block;
+
+      .left-panels[style] {
+        width: 100% !important;
+      }
+
+      .function-code[style] {
+        width: 100% !important;
+      }
+    }
+
+    .panel-gutter {
+      display: none;
+    }
+
+    .left-panels, .function-code {
+      min-height: 75vh;
+    }
+  }
 }
