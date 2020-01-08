@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Panel from '../panel/panel';
+import Code from '../code/code';
 
 import './editor.scss';
 
@@ -78,7 +79,7 @@ class Editor extends React.Component {
             <div className="gutter-bar" onMouseDown={this.startMouseDrag}></div>
           </div>
           <div className="function-code" style={{width: (100 - this.state.leftPanelWidth) + "%"}}>
-            Code block
+            <Code value="var x=1;"/>
           </div>
         </div>
       </div>
