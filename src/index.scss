@@ -4,9 +4,14 @@
 @import './commons/styles/resets';
 
 html {
-  background-color: #000;
+  background-color: #DDD;
 }
 
 body {
   background-color: #FFF;
+}
+
+#no-render-msg {
+  text-align: center;
+  padding: 20px;
 }
