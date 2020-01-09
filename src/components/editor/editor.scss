@@ -43,14 +43,31 @@
     .panel-gutter {
       position: relative;
       width: 0px;
+      z-index: 100;
+      top: 1px;
+
+      outline: 2px solid transparent;
+      outline-offset: -1px;
+      transition: all .2s ease-in-out;
 
       .gutter-bar {
         position: absolute;
         cursor: ew-resize;
         height: 100%;
-        left: -3px;
-        width: 6px;
+        left: -5px;
+        width: 10px;
         user-select: none;
+
+        i {
+          position: relative;
+          top: 50%;
+          left: 7px;
+        }
+      }
+
+      &:hover {
+        outline-color: $primary;
+        color: $primary;
       }
     }
 

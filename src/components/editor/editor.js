@@ -76,7 +76,9 @@ class Editor extends React.Component {
             </Panel>
           </div>
           <div className="panel-gutter">
-            <div className="gutter-bar" onMouseDown={this.startMouseDrag}></div>
+            <div className="gutter-bar" onMouseDown={this.startMouseDrag}>
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </div>
           </div>
           <div className="function-code" style={{width: (100 - this.state.leftPanelWidth) + "%"}}>
             <Code value="var x=1;"/>
