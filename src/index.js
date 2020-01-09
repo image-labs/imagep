@@ -4,7 +4,6 @@ import { Provider } from 'react-redux'
 
 import store from './store'
 import { initApp } from './commons/utils/app'
-import { renderCheck } from './commons/utils';
 import * as serviceWorker from './commons/utils/service-worker';
 
 import App from './components/app/app';
@@ -20,7 +19,6 @@ ReactDOM.render(
   </Provider>,
   rootElement
 );
-renderCheck();
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

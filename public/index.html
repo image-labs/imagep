@@ -20,12 +20,20 @@
       It will be replaced with the URL of the `public` folder during the build.
       Only files inside the `public` folder can be referenced from the HTML.
     -->
+    <script>
+      setTimeout(function () {
+        var msg = document.getElementById("no-render-msg");
+        if(msg){
+          msg.style.display = "block";
+        }
+      }, 2000);
+    </script>
     <title>ImageP</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root">
-      <div id="no-render-msg" style="display: none">
+      <div id="no-render-msg" style="display: none; text-align: center; padding: 20px;">
         <h5>Not Rendered!</h5>
         <h6>Guess you are using an old browser!</h6>
       </div>
