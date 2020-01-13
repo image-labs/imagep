@@ -31,7 +31,9 @@ class Panel extends React.Component {
       <div className={panelClassNames}>
         <div className="panel-header" onClick={this.toggleMinMax}>
           <span className="panel-name">
-            <i className="fa fa-chevron-down" aria-hidden="true"></i>
+            <span className="icon-container">
+              <i className="fa fa-chevron-down min-max-icon" aria-hidden="true"></i>
+            </span>
             {this.props.title}
           </span>
           <span className="panel-controls">

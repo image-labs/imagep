@@ -1,11 +1,9 @@
-@import '../../commons/styles/colors.scss';
-
-$duration: 0.2s;
+@import '../../commons/styles/variables';
 
 .panel {
   height: 100%;
-  background-color: $grey-2;
-  border-top: 1px solid $grey-2;
+  background-color: $grey;
+  border-top: 1px solid $grey;
   &:first-child {
     border-top: none;
   }
@@ -23,17 +21,36 @@ $duration: 0.2s;
     height: 32px;
     padding: 0.2rem 1rem;
 
-    color: $fg-color;
-    background-color: $grey-3;
+    color: $white;
+    background-color: $light-dark;
+    transition: background-color $duration ease-in-out;
 
     .panel-name {
       margin-right: 5px;
-      .fa {
+
+      .icon-container {
+        position: relative;
         display: inline-block;
-        font-size: .9em;
-        margin-right: 5px;
-        width: 15px;
-        transition: transform $duration ease-in-out;
+        left: -50px;
+        width: 0px;
+        transition: all $duration ease-in-out;
+
+        .min-max-icon {
+          display: inline-block;
+          font-size: .9em;
+          transition: transform $duration ease-in-out;
+        }
+      }
+    }
+
+    .panel-controls {
+    }
+
+    &:hover {
+      background-color: $light-dark-h;
+      .icon-container {
+        left: 0px;
+        width: 20px;
       }
     }
   }
@@ -43,15 +60,19 @@ $duration: 0.2s;
     transition-delay: $duration * 0.05;
     transition-property: height;
     overflow: hidden;
-    border-top: 1px solid $grey-2;
+    border-top: 1px solid $grey;
   }
 
   &.minimize-disabled {
     .panel-header {
       cursor: default;
 
-      .panel-name .fa {
+      .panel-name .icon-container {
         display: none;
+      }
+
+      &:hover {
+        background-color: $light-dark;
       }
     }
   }
@@ -64,7 +85,7 @@ $duration: 0.2s;
       height: 0;
     }
 
-    .fa-chevron-down {
+    .min-max-icon {
       transform: rotateZ(-90deg);
     }
   }
