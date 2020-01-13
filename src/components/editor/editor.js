@@ -57,10 +57,10 @@ class Editor extends React.Component {
             Untitled function
           </span>
           <span className="header-right">
-            <i className="fa fa-cog" aria-hidden="true"></i>
-            <button type="button" className="btn btn-primary btn-sm">
+            <i className="fa fa-save" aria-hidden="true"></i>
+            {/* <button type="button" className="btn btn-primary btn-sm">
               <i className="fa fa-save" aria-hidden="true"></i> Save
-            </button>
+            </button> */}
           </span>
         </div>
 
@@ -69,15 +69,15 @@ class Editor extends React.Component {
               style={{width: this.state.leftPanelWidth + "%"}}
               onTouchStart={this.startTouchDrag}>
             <Panel title="Input" controls={<i className="fa fa-plus" aria-hidden="true"></i>}>
-              <img src="https://www.w3schools.com/html/pic_trulli.jpg" alt="Italian Trulli"/>
+              <img src="/logo512.png" alt="Italian Trulli"/>
             </Panel>
             <Panel title="Result" minimizable={false}>
-            <img src="https://www.w3schools.com/html/pic_trulli.jpg" alt="Italian Trulli"/>
+            <img src="/logo512.png" alt="Italian Trulli"/>
             </Panel>
           </div>
           <div className="panel-gutter">
             <div className="gutter-bar" onMouseDown={this.startMouseDrag}>
-              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+              <i className="fa fa-ellipsis-v" aria-hidden="true"></i>
             </div>
           </div>
           <div className="function-code" style={{width: (100 - this.state.leftPanelWidth) + "%"}}>

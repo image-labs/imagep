@@ -1,15 +1,20 @@
-@import '../../commons/styles/colors.scss';
+@import '../../commons/styles/variables';
 
 .editor {
 
   .editor-header {
     height: 42px;
-    background-color: $grey-2;
-    border-top: 1px solid $bg-color;
+    background-color: $grey;
+    transition: background-color $duration ease-in-out;
+    &:hover {
+      background-color: $grey-h;
+    }
 
     display: flex;
     justify-content: space-between;
     padding: 0.5rem 1rem;
+
+    cursor: pointer;
 
     .header-left {
       i {
@@ -34,10 +39,17 @@
 
     .left-panels {
       width: 100%;
-      background-color: $grey-1;
+      background-color: $grey;
 
       display: flex;
       flex-direction: column;
+
+      .fa-plus {
+        transition: transform $duration ease-in-out;
+        &:hover {
+          transform: rotateZ(-90deg);
+        }
+      }
     }
 
     .panel-gutter {
@@ -48,7 +60,12 @@
 
       outline: 2px solid transparent;
       outline-offset: -1px;
-      transition: all .2s ease-in-out;
+      color: $light-dark-h;
+      transition: all $duration ease-in-out;
+      &:hover {
+        outline-color: $light-dark;
+        color: $light-dark;
+      }
 
       .gutter-bar {
         position: absolute;
@@ -63,11 +80,6 @@
           top: 50%;
           left: 7px;
         }
-      }
-
-      &:hover {
-        outline-color: $primary;
-        color: $primary;
       }
     }
 
