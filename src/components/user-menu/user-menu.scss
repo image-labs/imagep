@@ -1,27 +1,27 @@
-@import '../../commons/styles/colors.scss';
+@import '../../commons/styles/variables';
 
 .user-menu {
   .dropdown-toggle{
-    color: $fg-color;
+    color: $white;
     transition: none;
 
     .avatar {
-      filter: drop-shadow(1px 1px 0 $fg-color)
-          drop-shadow(-1px 1px 0  $fg-color)
-          drop-shadow(1px -1px 0 $fg-color)
-          drop-shadow(-1px -1px 0 $fg-color);
+      filter: drop-shadow(1px 1px 0 $white)
+          drop-shadow(-1px 1px 0  $white)
+          drop-shadow(1px -1px 0 $white)
+          drop-shadow(-1px -1px 0 $white);
     }
 
     padding: 0;
 
     &:hover {
-      color: $mg-color;
+      color: $white-h;
 
       .avatar {
-        filter: drop-shadow(1px 1px 0 $mg-color)
-            drop-shadow(-1px 1px 0 $mg-color)
-            drop-shadow(1px -1px 0 $mg-color)
-            drop-shadow(-1px -1px 0 $mg-color);
+        filter: drop-shadow(1px 1px 0 $white-h)
+            drop-shadow(-1px 1px 0 $white-h)
+            drop-shadow(1px -1px 0 $white-h)
+            drop-shadow(-1px -1px 0 $white-h);
       }
     }
 

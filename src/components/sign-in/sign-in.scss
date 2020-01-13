@@ -1,7 +1,7 @@
-@import '../../commons/styles/colors';
+@import '../../commons/styles/variables';
 
 .sign-in {
-  color: $bg-color;
+  color: $dark;
   padding: 10px;
 
   user-select: none;

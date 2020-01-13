@@ -1,0 +1,20 @@
+// -- Colors ---------------------------------
+
+$dark: #24292E;
+$dark-h: lighten($dark, 25%);
+
+$light-dark: lighten($dark, 15%);
+$light-dark-h: lighten($light-dark, 10%);
+
+$grey: #EEE;
+$grey-h: darken($grey, 12%);
+
+$white: #FFF;
+$white-h: darken($white, 25%);
+
+$primary: #007bff;
+$primary-h: lighten($primary, 25%);
+
+// -------------------------------------------
+
+$duration: 0.2s;

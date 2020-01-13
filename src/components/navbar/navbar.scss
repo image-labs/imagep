@@ -1,8 +1,8 @@
-@import '../../commons/styles/colors.scss';
+@import '../../commons/styles/variables';
 
 .navbar {
-  background-color: $bg-color;
-  color: $fg-color;
+  background-color: $dark;
+  color: $white;
   height: 42px;
 
   .logo {
@@ -12,7 +12,7 @@
       font-weight: bold;
 
       &:hover {
-        color: $mg-color;
+        color: $white-h;
       }
     }
   }
