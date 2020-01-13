@@ -1,13 +1,18 @@
-@import '../../commons/styles/colors.scss';
+@import '../../commons/styles/variables';
 
 .sign-in-button {
-  color: $fg-color;
-  border: 1px solid $fg-color;
+  color: $white;
+  border: 1px solid $white;
   border-radius: 5px;
   padding: 0px 5px;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 78px;
+  transition: width $duration ease-in-out;
 
   &:hover {
-    color: $bg-color;
-    background-color: $fg-color;
+    color: $dark;
+    background-color: $white;
+    width: 167px;
   }
 }

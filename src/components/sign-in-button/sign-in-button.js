@@ -4,22 +4,14 @@ import { generateSignInURL } from '../../commons/utils/github-auth';
 
 import './sign-in-button.scss';
 
-class SignInButton extends React.Component {
-  constructor(props) {
-    super(props);
+const signinURL = generateSignInURL();
 
-    this.state = {
-      signinURL: generateSignInURL()
-    };
-  }
-
-  render() {
-    return (
-      <a href={this.state.signinURL} target="_blank" rel="noopener noreferrer" className="sign-in-button">
-        <i className="fa fa-github"></i> Sign in
-      </a>
-    );
-  }
+function SignInButton() {
+  return (
+    <a href={signinURL} target="_blank" rel="noopener noreferrer" className="sign-in-button">
+      <i className="fa fa-github"></i> Sign in with GitHub
+    </a>
+  );
 }
 
 export default SignInButton;
