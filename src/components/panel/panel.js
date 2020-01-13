@@ -34,7 +34,7 @@ class Panel extends React.Component {
             <span className="icon-container">
               <i className="fa fa-chevron-down min-max-icon" aria-hidden="true"></i>
             </span>
-            {this.props.headerContent}
+            {this.props.title}
           </span>
           <span className="panel-controls">
             {this.props.controls}

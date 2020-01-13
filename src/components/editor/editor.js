@@ -68,10 +68,10 @@ class Editor extends React.Component {
           <div className="left-panels"
               style={{width: this.state.leftPanelWidth + "%"}}
               onTouchStart={this.startTouchDrag}>
-            <Panel headerContent="Input" controls={<i className="fa fa-plus" aria-hidden="true"></i>}>
+            <Panel title="Input" controls={<i className="fa fa-plus" aria-hidden="true"></i>}>
               <img src="/logo512.png" alt="Italian Trulli"/>
             </Panel>
-            <Panel headerContent="Result" minimizable={false}>
+            <Panel title="Result" minimizable={false}>
             <img src="/logo512.png" alt="Italian Trulli"/>
             </Panel>
           </div>
