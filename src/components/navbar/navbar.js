@@ -11,7 +11,9 @@ const SIGN_IN_PATH = "/signin";
 function Navbar(props) {
   let userControls;
 
-  if(props.currentUser) {
+  if(window.navigator.onLine === false) {
+    userControls = <i class="fa fa-exclamation-circle" aria-hidden="true" title="Network cannot be reached!"></i>;
+  } else if(props.currentUser) {
     if(props.currentUser.isLoading) {
       userControls = <i className="fa fa-spinner fa-spin" aria-hidden="true"></i>;
     } else {
