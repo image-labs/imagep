@@ -2,6 +2,7 @@ import React from 'react';
 
 import Panel from '../panel/panel';
 import Code from '../code/code';
+import FunctionDetailsPanel from '../function-details-panel/function-details-panel';
 
 import './editor.scss';
 
@@ -51,18 +52,7 @@ class Editor extends React.Component {
     return (
       <div className="editor">
 
-        <div className="editor-header">
-          <span className="header-left">
-            <i className="fa fa-star-o" aria-hidden="true"></i>
-            Untitled function
-          </span>
-          <span className="header-right">
-            <i className="fa fa-save" aria-hidden="true"></i>
-            {/* <button type="button" className="btn btn-primary btn-sm">
-              <i className="fa fa-save" aria-hidden="true"></i> Save
-            </button> */}
-          </span>
-        </div>
+        <FunctionDetailsPanel isMinimized={true}/>
 
         <div className="editor-body">
           <div className="left-panels"

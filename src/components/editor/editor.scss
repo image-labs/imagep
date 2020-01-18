@@ -2,37 +2,6 @@
 
 .editor {
 
-  .editor-header {
-    height: 42px;
-    background-color: $grey;
-    transition: background-color $duration ease-in-out;
-    &:hover {
-      background-color: $grey-h;
-    }
-
-    display: flex;
-    justify-content: space-between;
-    padding: 0.5rem 1rem;
-
-    cursor: pointer;
-
-    .header-left {
-      i {
-        margin-right: 10px;
-      }
-    }
-
-    .header-right {
-      >i {
-        font-size: 1.5em;
-      }
-      button {
-        margin-left: 10px;
-        margin-top: -8px;
-      }
-    }
-  }
-
   .editor-body {
     display: flex;
     height: calc(100% - 42px);

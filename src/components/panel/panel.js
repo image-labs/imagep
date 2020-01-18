@@ -6,7 +6,7 @@ class Panel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isMinimized: false
+      isMinimized: props.isMinimized || false
     };
 
     this.toggleMinMax = this.toggleMinMax.bind(this);
@@ -20,13 +20,17 @@ class Panel extends React.Component {
     }
   }
 
-  render() {
-    let panelClassNames = "panel";
+  collateClassNames(panelClassNames) {
     if(this.props.minimizable === false) {
       panelClassNames += " minimize-disabled";
     } else if(this.state.isMinimized) {
       panelClassNames += " minimized";
     }
+    return panelClassNames;
+  }
+
+  render() {
+    let panelClassNames = this.collateClassNames("panel");
     return (
       <div className={panelClassNames}>
         <div className="panel-header" onClick={this.toggleMinMax}>
