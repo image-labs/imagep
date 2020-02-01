@@ -15,9 +15,9 @@ class EditorHeaderPanel extends Panel {
               <i className="fa fa-chevron-down min-max-icon" aria-hidden="true"></i>
             </span>
             {this.props.details.name}
-            <span className="badge badge-secondary" title="Libraries used">
-              {this.props.details.libs.length}
-            </span>
+          </span>
+          <span className="library-count badge badge-secondary" title="Libraries used">
+            {this.props.details.libs.length}
           </span>
           <span className="panel-controls">
             <i className="fa fa-star-o" aria-hidden="true"></i>

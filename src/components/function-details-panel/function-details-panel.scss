@@ -8,28 +8,23 @@
 
   .panel-header {
     height: 42px;
-    padding: 0.5rem 1rem;
+    padding: 8px 16px;
     background-color: $grey-h;
     transition: background-color $duration ease-in-out;
 
-    display: flex;
-    justify-content: space-between;
+    position: relative;
     white-space: nowrap;
 
     cursor: pointer;
 
     .panel-name {
       margin-right: 5px;
+      max-width: calc(100% - 100px);
 
-      .badge {
-        vertical-align: text-bottom;
-
-        margin-left: 10px;
-        margin-top: -2px;
-
-        border-radius: 10px;
-        min-width: 18px;
-      }
+      display: inline-block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
 
       .icon-container {
         position: relative;
@@ -46,10 +41,21 @@
       }
     }
 
+    .library-count {
+      display: inline-block;
+      vertical-align: top;
+
+      margin-top: 3px;
+
+      border-radius: 10px;
+      min-width: 18px;
+    }
+
     .panel-controls {
+      position: absolute;
       font-size: 1.5em;
-      position: relative;
-      top: -5px;
+      top: 2px;
+      right: 16px;
 
       .fa-star-o {
         margin-right: 15px;
