@@ -1,9 +1,10 @@
 @import '../../commons/styles/variables';
 
 .function-details-panel {
-  transition: height $duration ease-in-out;
-  height: 200px;
+  transition: max-height $duration ease-in-out;
+  max-height: 100vh;
   background-color: $grey;
+  overflow: hidden;
 
   .panel-header {
     height: 42px;
@@ -20,11 +21,21 @@
     .panel-name {
       margin-right: 5px;
 
+      .badge {
+        vertical-align: text-bottom;
+
+        margin-left: 10px;
+        margin-top: -2px;
+
+        border-radius: 10px;
+        min-width: 18px;
+      }
+
       .icon-container {
         position: relative;
         display: inline-block;
-        left: -50px;
-        width: 0px;
+        left: 0px;
+        width: 20px;
         transition: all $duration ease-in-out;
 
         .min-max-icon {
@@ -46,11 +57,20 @@
     }
   }
 
+  .panel-body {
+    padding: 0.5rem 1rem;
+  }
+
   &.minimized {
-    height: 42px;
+    max-height: 42px;
 
     .panel-header {
       background-color: $grey;
+
+      .icon-container {
+        left: -50px;
+        width: 0px;
+      }
     }
 
     .min-max-icon {

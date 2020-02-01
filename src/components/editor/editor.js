@@ -1,8 +1,12 @@
 import React from 'react';
 
+import { connect } from 'react-redux';
+
 import Panel from '../panel/panel';
 import Code from '../code/code';
 import FunctionDetailsPanel from '../function-details-panel/function-details-panel';
+
+import CurrentFunctionReducer from '../../commons/reducers/current-function';
 
 import './editor.scss';
 
@@ -52,7 +56,10 @@ class Editor extends React.Component {
     return (
       <div className="editor">
 
-        <FunctionDetailsPanel isMinimized={true}/>
+        <FunctionDetailsPanel
+            details={this.props.currentFunction.details}
+            actions={this.props.currentFunctionActions}
+            isMinimized={true}/>
 
         <div className="editor-body">
           <div className="left-panels"
@@ -79,4 +86,6 @@ class Editor extends React.Component {
   }
 }
 
-export default Editor;
+const mapStateToProps = state => ({ currentFunction: state.currentFunction });
+const mapDispatchToProps = dispatch => ({ currentFunctionActions: CurrentFunctionReducer.getActions(dispatch) });
+export default connect(mapStateToProps, mapDispatchToProps)(Editor);

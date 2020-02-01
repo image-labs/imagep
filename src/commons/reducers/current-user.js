@@ -4,15 +4,15 @@ import axios from 'axios';
 function loadUser(actions) {
   actions.setLoading();
   return axios.get("user")
-    .then(user => {
-      const data = user.data;
+    .then(resp => {
+      const data = resp.data;
       actions.set({
         name: data.name,
         login: data.login,
         avatarURL: data.avatar_url,
         profileURL: data.html_url,
       });
-      return user;
+      return resp;
     })
     .catch(error => {
       actions.reset();

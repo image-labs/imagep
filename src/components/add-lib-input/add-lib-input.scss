@@ -1,0 +1,7 @@
+@import '../../commons/styles/variables';
+
+.add-lib-input {
+  button:disabled {
+    cursor: not-allowed;
+  }
+}
