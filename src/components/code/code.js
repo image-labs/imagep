@@ -1,5 +1,5 @@
 import React from 'react';
-import {UnControlled as CodeMirror} from 'react-codemirror2'
+import {Controlled as CodeMirror} from 'react-codemirror2'
 
 import './code.scss';
 
@@ -18,8 +18,7 @@ function Code(props) {
       <CodeMirror
         value={props.value}
         options={OPTIONS}
-        onChange={(editor, data, value) => {
-        }}
+        onBeforeChange={(editor, data, value) => props.onChange(value)}
       />
     </div>
   );

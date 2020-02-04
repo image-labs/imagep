@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Message from '../message/message';
+
 import { signIn } from '../../commons/utils/github-auth';
 
 import './sign-in.scss';
@@ -76,12 +78,7 @@ class SignIn extends React.Component {
 
   render() {
     const message = this.getMessage(this.state.signInStatus);
-    return (
-      <div className="sign-in">
-        <i className="fa fa-5x fa-github"></i>
-        {message}
-      </div>
-    );
+    return <Message className="sign-in" icon="fa-5x fa-github" body={message}/>
   }
 
 }

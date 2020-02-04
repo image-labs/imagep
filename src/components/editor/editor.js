@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Panel from '../panel/panel';
 import Code from '../code/code';
 import FunctionDetailsPanel from '../function-details-panel/function-details-panel';
+import Message from '../message/message';
 
 import CurrentFunctionReducer from '../../commons/reducers/current-function';
 
@@ -20,6 +21,25 @@ class Editor extends React.Component {
 
     this.startMouseDrag = this.startMouseDrag.bind(this);
     this.startTouchDrag = this.startTouchDrag.bind(this);
+  }
+
+  initCurrentFunction() {
+    const currentFunctionId = this.props.match.params.id;
+    if(currentFunctionId) {
+      this.props.currentFunctionActions.load(currentFunctionId);
+    } else {
+      this.props.currentFunctionActions.reset();
+    }
+  }
+
+  componentDidMount() {
+    this.initCurrentFunction();
+  }
+
+  componentDidUpdate(prevProps) {
+    if(this.props.match.params.id !== prevProps.match.params.id) {
+      this.initCurrentFunction();
+    }
   }
 
   setLeftPanelWidth(pxWidth) {
@@ -53,12 +73,23 @@ class Editor extends React.Component {
   }
 
   render() {
+    const currentFunction = this.props.currentFunction;
+    const currentFunctionActions = this.props.currentFunctionActions;
+
+    if(currentFunction.isLoading) {
+      return <Message icon="fa-2x fa-spinner fa-spin" body="Loading function..."/>
+    } else if(currentFunction.errorMsg) {
+      return <Message icon="fa-2x fa-exclamation-triangle"
+          body={currentFunction.errorMsg + "!"}
+          actions={(<a href="/#/" className="btn btn-primary btn-sm" role="button">New Function</a>)}/>
+    }
+
     return (
       <div className="editor">
 
         <FunctionDetailsPanel
-            details={this.props.currentFunction.details}
-            actions={this.props.currentFunctionActions}
+            details={currentFunction.details}
+            actions={currentFunctionActions}
             isMinimized={true}/>
 
         <div className="editor-body">
@@ -78,9 +109,11 @@ class Editor extends React.Component {
             </div>
           </div>
           <div className="function-code" style={{width: (100 - this.state.leftPanelWidth) + "%"}}>
-            <Code value="var x=1;"/>
+            <Code value={currentFunction.statements}
+                onChange={value => currentFunctionActions.setStatements(value)}/>
           </div>
         </div>
+
       </div>
     );
   }

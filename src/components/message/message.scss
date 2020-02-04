@@ -1,0 +1,12 @@
+@import '../../commons/styles/variables';
+
+.message-panel {
+  padding: 30px;
+  text-align: center;
+
+  user-select: none;
+
+  .message-actions {
+    margin-top: 20px;
+  }
+}
