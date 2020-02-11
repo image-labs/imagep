@@ -6,22 +6,33 @@ import AddLibInput from '../add-lib-input/add-lib-input';
 import './function-details-panel.scss';
 
 class EditorHeaderPanel extends Panel {
+  onSave(event) {
+    event.stopPropagation();
+    this.props.actions.save(this.props.currentUser).then(this.props.afterSave);
+  }
+
   render() {
     return (
       <div className={this.collateClassNames("function-details-panel")}>
         <div className="panel-header" onClick={this.toggleMinMax}>
-          <span className="panel-name">
-            <span className="icon-container">
-              <i className="fa fa-chevron-down min-max-icon" aria-hidden="true"></i>
+          <div className="panel-header-body">
+            <span className="panel-name">
+              <span className="icon-container">
+                <i className="fa fa-chevron-down min-max-icon" aria-hidden="true"></i>
+              </span>
+              {this.props.details.name}
             </span>
-            {this.props.details.name}
-          </span>
-          <span className="library-count badge badge-secondary" title="Libraries used">
-            {this.props.details.libs.length}
-          </span>
-          <span className="panel-controls">
-            <i className="fa fa-star-o" aria-hidden="true"></i>
-            <i className="fa fa-save" aria-hidden="true"></i>
+            <span className="library-count badge badge-secondary" title="Libraries used">
+              {this.props.details.libs.length}
+            </span>
+          </div>
+          <span className={"panel-controls " + (this.props.details.gitHubURL ? "" : "not-saved")}>
+            <a href={this.props.details.gitHubURL} className="if-not-saved" target="_blank" rel="noopener noreferrer" title="Open in GitHub">
+              <i className="fa fa-github" aria-hidden="true" onClick={event => event.stopPropagation()}></i>
+            </a>
+            <i className="fa fa-star-o if-not-saved" title="Mark current function as starred" aria-hidden="true"
+                onClick={event => event.stopPropagation()}></i>
+            <i className="fa fa-save" title="Save Function" onClick={event => this.onSave(event)} aria-hidden="true"></i>
           </span>
         </div>
 

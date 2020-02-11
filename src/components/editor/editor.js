@@ -1,7 +1,8 @@
 import React from 'react';
-
+import { generatePath } from "react-router";
 import { connect } from 'react-redux';
 
+import { STATUS_TYPES } from '../../commons/utils/axios';
 import Panel from '../panel/panel';
 import Code from '../code/code';
 import FunctionDetailsPanel from '../function-details-panel/function-details-panel';
@@ -21,6 +22,8 @@ class Editor extends React.Component {
 
     this.startMouseDrag = this.startMouseDrag.bind(this);
     this.startTouchDrag = this.startTouchDrag.bind(this);
+
+    this.afterSave = this.afterSave.bind(this);
   }
 
   initCurrentFunction() {
@@ -72,16 +75,34 @@ class Editor extends React.Component {
     }
   }
 
+  afterSave(data) {
+    if(this.props.match.params.id !== data.id) {
+      this.props.history.push({
+          pathname: generatePath(this.props.match.path, {id: data.id})
+      });
+    }
+  }
+
   render() {
     const currentFunction = this.props.currentFunction;
-    const currentFunctionActions = this.props.currentFunctionActions;
+    const actions = this.props.currentFunctionActions;
 
-    if(currentFunction.isLoading) {
-      return <Message icon="fa-2x fa-spinner fa-spin" body="Loading function..."/>
-    } else if(currentFunction.errorMsg) {
-      return <Message icon="fa-2x fa-exclamation-triangle"
-          body={currentFunction.errorMsg + "!"}
-          actions={(<a href="/#/" className="btn btn-primary btn-sm" role="button">New Function</a>)}/>
+    if(currentFunction.ajax) {
+      switch(currentFunction.ajax.status) {
+        case STATUS_TYPES.LOADING:
+        case STATUS_TYPES.SAVING:
+          return <Message icon="fa-2x fa-spinner fa-spin"
+              body={`${currentFunction.ajax.message}...`}/>
+        case STATUS_TYPES.LOADING_ERROR:
+          return <Message icon="fa-2x fa-exclamation-triangle"
+              body={`${currentFunction.ajax.message}!`}
+              actions={(<a href="/#/" className="btn btn-primary btn-sm" role="button">New Function</a>)}/>
+        case STATUS_TYPES.SAVING_ERROR:
+          return <Message icon="fa-2x fa-exclamation-triangle"
+              body={`${currentFunction.ajax.message}!`}
+              actions={(<button className="btn btn-primary btn-sm" onClick={actions.resetAjax}>Back To Edit</button>)}/>
+        default:
+      }
     }
 
     return (
@@ -89,7 +110,9 @@ class Editor extends React.Component {
 
         <FunctionDetailsPanel
             details={currentFunction.details}
-            actions={currentFunctionActions}
+            actions={actions}
+            afterSave={this.afterSave}
+            currentUser={this.props.currentUser}
             isMinimized={true}/>
 
         <div className="editor-body">
@@ -110,7 +133,7 @@ class Editor extends React.Component {
           </div>
           <div className="function-code" style={{width: (100 - this.state.leftPanelWidth) + "%"}}>
             <Code value={currentFunction.statements}
-                onChange={value => currentFunctionActions.setStatements(value)}/>
+                onChange={value => actions.setStatements(value)}/>
           </div>
         </div>
 
@@ -119,6 +142,6 @@ class Editor extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({ currentFunction: state.currentFunction });
+const mapStateToProps = state => ({ currentFunction: state.currentFunction, currentUser: state.currentUser });
 const mapDispatchToProps = dispatch => ({ currentFunctionActions: CurrentFunctionReducer.getActions(dispatch) });
 export default connect(mapStateToProps, mapDispatchToProps)(Editor);

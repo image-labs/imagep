@@ -7,58 +7,79 @@
   overflow: hidden;
 
   .panel-header {
-    height: 42px;
-    padding: 8px 16px;
-    background-color: $grey-h;
-    transition: background-color $duration ease-in-out;
-
     position: relative;
-    white-space: nowrap;
 
-    cursor: pointer;
+    .panel-header-body {
+      height: 42px;
+      padding: 8px 16px;
+      background-color: $grey-h;
+      transition: background-color $duration ease-in-out;
 
-    .panel-name {
-      margin-right: 5px;
-      max-width: calc(100% - 100px);
-
-      display: inline-block;
+      position: relative;
       white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
 
-      .icon-container {
-        position: relative;
+      cursor: pointer;
+
+      .panel-name {
+        margin-right: 5px;
+        max-width: calc(100% - 200px);
+
         display: inline-block;
-        left: 0px;
-        width: 20px;
-        transition: all $duration ease-in-out;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
 
-        .min-max-icon {
+        .icon-container {
+          position: relative;
           display: inline-block;
-          font-size: .9em;
-          transition: transform $duration ease-in-out;
+          left: 0px;
+          width: 20px;
+          transition: all $duration ease-in-out;
+
+          .min-max-icon {
+            display: inline-block;
+            font-size: .9em;
+            transition: transform $duration ease-in-out;
+          }
         }
       }
+
+      .library-count {
+        display: inline-block;
+        vertical-align: top;
+
+        margin-top: 3px;
+
+        border-radius: 10px;
+        min-width: 18px;
+      }
     }
-
-    .library-count {
-      display: inline-block;
-      vertical-align: top;
-
-      margin-top: 3px;
-
-      border-radius: 10px;
-      min-width: 18px;
-    }
-
     .panel-controls {
+      cursor: pointer;
+
       position: absolute;
       font-size: 1.5em;
       top: 2px;
       right: 16px;
 
-      .fa-star-o {
-        margin-right: 15px;
+      .fa {
+        margin-left: 15px;
+      }
+
+      .fa {
+        color: $dark;
+        transition: color $duration ease-in-out;
+
+        &:hover {
+          color: $dark-h;
+        }
+      }
+
+      &.not-saved {
+        .if-not-saved {
+          opacity: 0.2;
+          cursor: not-allowed;
+        }
       }
     }
   }
@@ -70,7 +91,7 @@
   &.minimized {
     max-height: 42px;
 
-    .panel-header {
+    .panel-header-body {
       background-color: $grey;
 
       .icon-container {
@@ -84,7 +105,7 @@
     }
   }
 
-  .panel-header:hover {
+  .panel-header-body:hover {
     background-color: $grey-hh;
 
     .icon-container {
