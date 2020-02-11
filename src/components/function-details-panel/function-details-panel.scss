@@ -94,7 +94,7 @@
     .panel-header-body {
       background-color: $grey;
 
-      .icon-container {
+      .panel-name .icon-container {
         left: -50px;
         width: 0px;
       }
@@ -108,7 +108,7 @@
   .panel-header-body:hover {
     background-color: $grey-hh;
 
-    .icon-container {
+    .panel-name .icon-container {
       left: 0px;
       width: 20px;
     }
