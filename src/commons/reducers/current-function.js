@@ -55,7 +55,11 @@ function responseDataToState(data) {
     details: {
       ...details,
 
-      owner: data.owner.login,
+      owner: {
+        login: data.owner.login,
+        avatarURL: data.owner.avatar_url,
+        profileURL: data.owner.html_url,
+      },
       gitHubURL: data.html_url,
 
       isStarred: false,
@@ -112,7 +116,7 @@ function saveFunction(actions, getReducerState, currentUser) {
   });
 
   let savePromise;
-  if(currentUser.login !== state.details.owner) {
+  if(currentUser.login !== state.details.owner.login) {
     // Create new gist
     savePromise = axios.post('gists', data).then(resp => {
       const state = responseDataToState(resp.data);

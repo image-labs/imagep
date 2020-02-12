@@ -87,6 +87,17 @@
 
   .panel-body {
     padding: 0.5rem 1rem;
+
+    .avatar {
+      margin: 1px 1px 1px 10px;
+
+      border-radius: 5px;
+      overflow: hidden;
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
   }
 
   &.minimized {
