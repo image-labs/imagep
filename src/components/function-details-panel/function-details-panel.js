@@ -4,14 +4,34 @@ import Panel from '../panel/panel';
 import AddLibInput from '../add-lib-input/add-lib-input';
 
 import './function-details-panel.scss';
+import { isActive } from '../../commons/utils/axios';
 
-class EditorHeaderPanel extends Panel {
+class FunctionDetailsPanel extends Panel {
   onSave(event) {
     event.stopPropagation();
     this.props.actions.save(this.props.currentUser).then(this.props.afterSave);
   }
+  toggleStarred(event) {
+    event.stopPropagation();
+    if(this.props.details.gitHubURL) {
+      this.props.actions.toggleStarred();
+    }
+  }
 
   render() {
+    const isSaved = this.props.details.gitHubURL ? true : undefined;
+
+    let starComponent;
+    if(isActive(this.props.details.isStarred)) {
+      starComponent = <i className="fa fa-spinner fa-spin"></i>;
+    } else if (this.props.details.isStarred) {
+      starComponent = <i title="Unstar current function" className={"fa fa-star " + (isSaved && "active")}
+          onClick={event => this.toggleStarred(event)}></i>
+    } else {
+      starComponent = <i title="Star current function" className={"fa fa-star-o " + (isSaved && "active")}
+          onClick={event => this.toggleStarred(event)}></i>
+    }
+
     return (
       <div className={this.collateClassNames("function-details-panel")}>
         <div className="panel-header" onClick={this.toggleMinMax}>
@@ -26,13 +46,14 @@ class EditorHeaderPanel extends Panel {
               {this.props.details.libs.length}
             </span>
           </div>
-          <span className={"panel-controls " + (this.props.details.gitHubURL ? "" : "not-saved")}>
-            <a href={this.props.details.gitHubURL} className="if-not-saved" target="_blank" rel="noopener noreferrer" title="Open in GitHub">
-              <i className="fa fa-github" aria-hidden="true" onClick={event => event.stopPropagation()}></i>
+          <span className="panel-controls">
+            <a title="Open in GitHub" target="_blank" rel="noopener noreferrer"
+                href={this.props.details.gitHubURL}
+                className={"fa fa-github " + (isSaved && "active")}
+                onClick={event => event.stopPropagation()}>
             </a>
-            <i className="fa fa-star-o if-not-saved" title="Mark current function as starred" aria-hidden="true"
-                onClick={event => event.stopPropagation()}></i>
-            <i className="fa fa-save" title="Save Function" onClick={event => this.onSave(event)} aria-hidden="true"></i>
+            {starComponent}
+            <i className="fa fa-save active" title="Save Function" onClick={event => this.onSave(event)} aria-hidden="true"></i>
           </span>
         </div>
 
@@ -68,4 +89,4 @@ class EditorHeaderPanel extends Panel {
   }
 }
 
-export default EditorHeaderPanel;
+export default FunctionDetailsPanel;

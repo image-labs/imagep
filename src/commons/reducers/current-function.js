@@ -25,6 +25,7 @@ function loadFunction(actions, getReducerState, id) {
   return axios.get(`gists/${id}`).then(resp => {
     const state = responseDataToState(resp.data);
     actions.set(state);
+    actions.loadStarred();
     return state;
   }).catch(error => {
     actions.setAjax({
@@ -139,6 +140,29 @@ function saveFunction(actions, getReducerState, currentUser) {
   return savePromise;
 }
 
+function loadStarred(actions, getReducerState) {
+  const state = getReducerState();
+
+  actions.setStarred(STATUS_TYPES.LOADING);
+  return axios.get(`gists/${state.id}/star`).then(resp => {
+    actions.setStarred(true);
+  }, error => {
+    actions.setStarred(false);
+  });
+}
+
+function toggleStarred(actions, getReducerState) {
+  const state = getReducerState();
+
+  actions.setStarred(STATUS_TYPES.SAVING);
+  let promise = state.details.isStarred ? axios.delete(`gists/${state.id}/star`) : axios.put(`gists/${state.id}/star`);
+  return promise.then(resp => {
+    actions.setStarred(!state.details.isStarred);
+  }, error => {
+    actions.setStarred(state.details.isStarred);
+  });
+}
+
 const INITIAL_STATE = {
   id: undefined,
   details: {
@@ -178,6 +202,12 @@ const currentFunctionReducer = createReducer({
       libs: arr => arr.filter(item => item !== payload)
     }
   }),
+
+  setStarred: (state, payload) => update(state, {
+    details: {isStarred: {$set: payload}}
+  }),
+  toggleStarred: func(toggleStarred),
+  loadStarred: func(loadStarred),
 
   setAjax: (state, payload) => update(state, {
     ajax: {$set: payload}

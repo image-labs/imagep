@@ -54,33 +54,34 @@
         min-width: 18px;
       }
     }
-    .panel-controls {
-      cursor: pointer;
 
+    .panel-controls {
       position: absolute;
-      font-size: 1.5em;
       top: 2px;
       right: 16px;
 
-      .fa {
-        margin-left: 15px;
-      }
+      font-size: 1.5em;
 
       .fa {
+        margin-left: 10px;
+        width: 24px;
+
         color: $dark;
         transition: color $duration ease-in-out;
 
-        &:hover {
-          color: $dark-h;
+        opacity: 0.2;
+        cursor: not-allowed;
+
+        &.active {
+          opacity: 1;
+          cursor: pointer;
+
+          &:hover {
+            color: $dark-h;
+          }
         }
       }
 
-      &.not-saved {
-        .if-not-saved {
-          opacity: 0.2;
-          cursor: not-allowed;
-        }
-      }
     }
   }
 
