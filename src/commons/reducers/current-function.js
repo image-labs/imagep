@@ -8,6 +8,7 @@ import { STATUS_TYPES, isActive, getErrorMsg } from '../../commons/utils/axios';
 import LIBRARIES from '../../configs/libraries';
 
 const DEFAULT_NAME = "Untitled function";
+const DEFAULT_STATMENT = "// ImageP"
 const DETAILS_FILE_NAME = "imagep.json";
 
 function loadFunction(actions, getReducerState, id) {
@@ -48,7 +49,11 @@ function responseDataToState(data) {
   }
 
   const {inputs, ...details} = JSON.parse(detailsJson);
-  const statements = get(data, ["files", getStatementsFileName(details), "content"]);
+  let statements = get(data, ["files", getStatementsFileName(details), "content"]);
+
+  if(statements === DEFAULT_STATMENT) {
+    statements = "";
+  }
 
   return {
     id: data.id,
@@ -80,19 +85,12 @@ function stateToRequestData(state) {
         language: details.language,
         libs: details.libs,
         inputs: state.inputs
-      })
+      }),
+    },
+    [getStatementsFileName(details)]: {
+      content: state.statements || DEFAULT_STATMENT
     }
-  };
-
-  const statementFileName = getStatementsFileName(details);
-  if(state.statements) {
-    files[statementFileName] = {
-      content: state.statements
-    };
-  } else if(state.id) {
-    // To delete an existing statement file
-    files[statementFileName] = null;
-  }
+};
 
   return {
     description,
@@ -116,23 +114,20 @@ function saveFunction(actions, getReducerState, currentUser) {
   });
 
   let savePromise;
-  if(currentUser.login !== state.details.owner.login) {
-    // Create new gist
-    savePromise = axios.post('gists', data).then(resp => {
-      const state = responseDataToState(resp.data);
-      actions.set(state);
-      return state;
-    });
-  } else {
+  if(state.id && currentUser.login === state.details.owner.login) {
     // Update existing gist
-    savePromise = axios.patch(`gists/${state.id}`, data).then(resp => {
-      const state = responseDataToState(resp.data);
-      actions.set(state);
-      return state;
-    });
+    savePromise = axios.patch(`gists/${state.id}`, data);
+  } else {
+    // Create new gist for current user
+    savePromise = axios.post('gists', data);
   }
 
-  savePromise = savePromise.catch(error => {
+  savePromise = savePromise.then(resp => {
+    const state = responseDataToState(resp.data);
+    actions.set(state);
+    actions.loadStarred();
+    return state;
+  }, error => {
     const msg = getErrorMsg(error);
     actions.setAjax({
       status: STATUS_TYPES.SAVING_ERROR,
