@@ -68,8 +68,9 @@ class FunctionDetailsPanel extends Panel {
                 onChange={event => this.props.actions.setName(event.target.value)}
                 className="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"/>
                 {this.props.details.owner && (
-                  <a title={`Author : ${this.props.details.owner.login}`} target="_blank" rel="noopener noreferrer" className="avatar"
-                      href={this.props.details.owner.profileURL} target="_">
+                  <a target="_blank" rel="noopener noreferrer" className="avatar"
+                      title={`Author : ${this.props.details.owner.login}`}
+                      href={this.props.details.owner.profileURL}>
                     <img alt="" src={this.props.details.owner.avatarURL + "s=40"} height="36" width="36"></img>
                   </a>
                 )}
