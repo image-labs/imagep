@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Message from '../message/message';
+import Message from '../../components/message/message';
 
 import { signIn } from '../../commons/utils/github-auth';
 

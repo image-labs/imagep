@@ -6,7 +6,7 @@ import store from './store'
 import { initApp } from './commons/utils/app'
 import * as serviceWorker from './commons/utils/service-worker';
 
-import App from './components/app/app';
+import App from './pages/app/app';
 
 import './index.scss';
 

@@ -3,10 +3,10 @@ import { generatePath } from "react-router";
 import { connect } from 'react-redux';
 
 import { STATUS_TYPES } from '../../commons/utils/axios';
-import Panel from '../panel/panel';
-import Code from '../code/code';
-import FunctionDetailsPanel from '../function-details-panel/function-details-panel';
-import Message from '../message/message';
+import Panel from '../../components/panel/panel';
+import Code from '../../components/code/code';
+import FunctionDetailsPanel from '../../components/function-details-panel/function-details-panel';
+import Message from '../../components/message/message';
 
 import CurrentFunctionReducer from '../../commons/reducers/current-function';
 

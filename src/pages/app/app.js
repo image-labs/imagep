@@ -2,7 +2,7 @@ import React from 'react';
 import { isTouch } from '../../commons/utils/env';
 import { HashRouter, Route, Switch } from "react-router-dom";
 
-import Navbar from '../navbar/navbar';
+import Navbar from '../../components/navbar/navbar';
 import SignIn from '../sign-in/sign-in';
 
 import Editor from '../editor/editor';
