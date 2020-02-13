@@ -1,7 +1,7 @@
 import { createStore, combineReducers } from 'redux';
 
-import currentUser from './commons/reducers/current-user';
-import currentFunction from './commons/reducers/current-function';
+import currentUser from './reducers/current-user';
+import currentFunction from './reducers/current-function';
 
 const rootReducer = combineReducers({
   currentUser,

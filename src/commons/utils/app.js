@@ -1,7 +1,7 @@
 import { setAxiosDefaults } from './axios';
 
 import { getAccessToken, addAccessTokenListener } from './github-auth';
-import currentUserReducer from '../reducers/current-user';
+import currentUserReducer from '../../reducers/current-user';
 
 function setupCurrentUser(currentUser) {
   if(getAccessToken()) {

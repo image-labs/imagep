@@ -3,9 +3,9 @@ import { get } from 'lodash';
 import axios from 'axios';
 import update from 'immutability-helper';
 
-import { STATUS_TYPES, isActive, getErrorMsg } from '../../commons/utils/axios';
+import { STATUS_TYPES, isActive, getErrorMsg } from '../commons/utils/axios';
 
-import LIBRARIES from '../../configs/libraries';
+import LIBRARIES from '../configs/libraries';
 
 const DEFAULT_NAME = "Untitled function";
 const DEFAULT_STATMENT = "// ImageP"

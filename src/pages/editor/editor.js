@@ -8,7 +8,7 @@ import Code from '../../components/code/code';
 import FunctionDetailsPanel from '../../components/function-details-panel/function-details-panel';
 import Message from '../../components/message/message';
 
-import CurrentFunctionReducer from '../../commons/reducers/current-function';
+import CurrentFunctionReducer from '../../reducers/current-function';
 
 import './editor.scss';
 
