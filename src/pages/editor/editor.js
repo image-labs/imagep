@@ -7,6 +7,7 @@ import Panel from '../../components/panel/panel';
 import Code from '../../components/code/code';
 import FunctionDetailsPanel from '../../components/function-details-panel/function-details-panel';
 import Message from '../../components/message/message';
+import VSpliter from '../../components/v-splitter/v-splitter';
 
 import CurrentFunctionReducer from '../../reducers/current-function';
 
@@ -15,13 +16,6 @@ import './editor.scss';
 class Editor extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      leftPanelWidth: 50
-    };
-
-    this.startMouseDrag = this.startMouseDrag.bind(this);
-    this.startTouchDrag = this.startTouchDrag.bind(this);
 
     this.afterSave = this.afterSave.bind(this);
   }
@@ -43,34 +37,6 @@ class Editor extends React.Component {
     if(this.props.match.params.id !== prevProps.match.params.id) {
       this.initCurrentFunction();
     }
-  }
-
-  setLeftPanelWidth(pxWidth) {
-    const leftPanelWidth = (pxWidth / window.screen.width) * 100;
-    this.setState({ leftPanelWidth });
-  }
-
-  startMouseDrag() {
-    const onDrag = e => {
-      this.setLeftPanelWidth(e.clientX);
-    };
-
-    document.addEventListener("mousemove", onDrag);
-    document.addEventListener("mouseup", e => {
-      document.removeEventListener("mousemove", onDrag);
-    });
-  }
-
-  startTouchDrag(e) {
-    const xDelta = e.currentTarget.clientWidth - e.touches[0].clientX;
-    const onDrag = e => {
-      this.setLeftPanelWidth(e.touches[0].clientX + xDelta);
-    };
-
-    document.addEventListener("touchmove", onDrag);
-    document.addEventListener("touchend", e => {
-      document.removeEventListener("touchmove", onDrag);
-    });
   }
 
   afterSave(data) {
@@ -105,7 +71,6 @@ class Editor extends React.Component {
 
     return (
       <div className="editor">
-
         <FunctionDetailsPanel
             details={currentFunction.details}
             actions={actions}
@@ -114,29 +79,22 @@ class Editor extends React.Component {
             isMinimized={true}/>
 
         <div className="editor-body">
-          <div className="left-panels"
-              style={{width: this.state.leftPanelWidth + "%"}}
-              onTouchStart={this.startTouchDrag}>
-            <Panel title="Input" controls={<i className="fa fa-plus" aria-hidden="true"></i>}>
-              <div class="image-panel"></div>
-              {/* <img src="/logo512.png" style={({height: "100%"})}/> */}
-            </Panel>
-            <Panel title="Result" minimizable={false}>
-              <div class="image-panel"></div>
-              {/* <img src="/logo512.png" style={({height: "100%"})}/> */}
-            </Panel>
-          </div>
-          <div className="panel-gutter">
-            <div className="gutter-bar" onMouseDown={this.startMouseDrag}>
-              <i className="fa fa-ellipsis-v" aria-hidden="true"></i>
+          <VSpliter left={(
+            <div className="left-panels">
+              <Panel title="Input" controls={<i className="fa fa-plus add-image" aria-hidden="true"></i>}>
+                <div className="image-panel"></div>
+              </Panel>
+              <Panel title="Result" minimizable={false}>
+                <div className="image-panel"></div>
+              </Panel>
             </div>
-          </div>
-          <div className="function-code" style={{width: (100 - this.state.leftPanelWidth) + "%"}}>
-            <Code value={currentFunction.statements}
-                onChange={value => actions.setStatements(value)}/>
-          </div>
+          )} right={(
+            <div className="right-panels">
+              <Code value={currentFunction.statements}
+                  onChange={value => actions.setStatements(value)}/>
+            </div>
+          )}/>
         </div>
-
       </div>
     );
   }

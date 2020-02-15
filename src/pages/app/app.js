@@ -14,7 +14,7 @@ import './app.scss';
 
 function App() {
   return (
-      <div className={"app" + isTouch() ? " is-touch" : ""}>
+      <div className={"app" + (isTouch() ? " is-touch" : "")}>
         <Navbar />
         <HashRouter basename='/'>
           <Switch>

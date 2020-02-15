@@ -4,10 +4,10 @@ function isDev() {
 };
 
 function isTouch() {
-  return ('ontouchstart' in window);
-}
+  return 'ontouchstart' in window;
+};
 
-export default {
+export {
   isDev,
   isTouch,
 };

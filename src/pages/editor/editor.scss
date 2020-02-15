@@ -4,17 +4,15 @@
   height: calc(100vh - 42px);
 
   .editor-body {
-    display: flex;
     height: calc(100% - 42px);
 
     .left-panels {
-      width: 100%;
-      background-color: $grey;
+      height: 100%;
 
       display: flex;
       flex-direction: column;
 
-      .fa-plus {
+      .add-image {
         transition: transform $duration ease-in-out;
         &:hover {
           transform: rotateZ(-90deg);
@@ -22,44 +20,9 @@
       }
     }
 
-    .panel-gutter {
-      position: relative;
-      width: 0px;
-      z-index: 100;
-      top: 1px;
-
-      outline: 2px solid transparent;
-      outline-offset: -1px;
-      color: $light-dark-h;
-      transition: all $duration ease-in-out;
-      &:hover {
-        outline-color: $light-dark;
-        color: $light-dark;
-      }
-
-      .gutter-bar {
-        position: absolute;
-        cursor: ew-resize;
-        height: 100%;
-        left: -5px;
-        width: 10px;
-        user-select: none;
-
-        i {
-          position: relative;
-          top: 50%;
-          left: 7px;
-        }
-      }
+    .right-panels {
+      height: 100%;
     }
-
-    .function-code {
-      position: relative;
-      width: 100%;
-
-      background-color: lightblue;
-    }
-
   }
 }
 

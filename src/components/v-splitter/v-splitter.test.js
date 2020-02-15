@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Home from './home';
+import VSplitter from './v-splitter';
 
 it('Renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<Home />, div);
+  ReactDOM.render(<VSplitter />, div);
   ReactDOM.unmountComponentAtNode(div);
 });
