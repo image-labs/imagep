@@ -10,9 +10,18 @@
   width: 78px;
   transition: width $duration ease-in-out;
 
+  .with-gh {
+    opacity: 0;
+    transition: opacity $duration ease-in-out;
+  }
+
   &:hover {
     color: $dark;
     background-color: $white;
     width: 167px;
+
+    .with-gh {
+      opacity: 1;
+    }
   }
 }
