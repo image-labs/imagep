@@ -62,17 +62,15 @@ class Editor extends React.Component {
   }
 
   startTouchDrag(e) {
-    if(window.innerHeight < window.innerWidth){
-      const xDelta = e.currentTarget.clientWidth - e.touches[0].clientX;
-      const onDrag = e => {
-        this.setLeftPanelWidth(e.touches[0].clientX + xDelta);
-      };
+    const xDelta = e.currentTarget.clientWidth - e.touches[0].clientX;
+    const onDrag = e => {
+      this.setLeftPanelWidth(e.touches[0].clientX + xDelta);
+    };
 
-      document.addEventListener("touchmove", onDrag);
-      document.addEventListener("touchend", e => {
-        document.removeEventListener("touchmove", onDrag);
-      });
-    }
+    document.addEventListener("touchmove", onDrag);
+    document.addEventListener("touchend", e => {
+      document.removeEventListener("touchmove", onDrag);
+    });
   }
 
   afterSave(data) {
@@ -120,10 +118,12 @@ class Editor extends React.Component {
               style={{width: this.state.leftPanelWidth + "%"}}
               onTouchStart={this.startTouchDrag}>
             <Panel title="Input" controls={<i className="fa fa-plus" aria-hidden="true"></i>}>
-              <img src="/logo512.png" alt="Italian Trulli"/>
+              <div class="image-panel"></div>
+              {/* <img src="/logo512.png" style={({height: "100%"})}/> */}
             </Panel>
             <Panel title="Result" minimizable={false}>
-            <img src="/logo512.png" alt="Italian Trulli"/>
+              <div class="image-panel"></div>
+              {/* <img src="/logo512.png" style={({height: "100%"})}/> */}
             </Panel>
           </div>
           <div className="panel-gutter">

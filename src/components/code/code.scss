@@ -1,7 +1,11 @@
 @import '../../commons/styles/variables';
 
 .code {
-  .CodeMirror {
-    height: calc(100vh - 84px);
+  height: 100%;
+  .react-codemirror2 {
+    height: 100%;
+    .CodeMirror {
+      height: 100%;
+    }
   }
 }

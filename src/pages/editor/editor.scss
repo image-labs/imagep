@@ -1,6 +1,7 @@
 @import '../../commons/styles/variables';
 
 .editor {
+  height: calc(100vh - 42px);
 
   .editor-body {
     display: flex;
@@ -60,35 +61,10 @@
     }
 
   }
-
 }
 
-@media (orientation: landscape) {
-  .editor {
-    height: calc(100vh - 42px);
-  }
-}
-
-@media (orientation: portrait) {
-  .editor {
-    .editor-body {
-      display: block;
-
-      .left-panels[style] {
-        width: 100% !important;
-      }
-
-      .function-code[style] {
-        width: 100% !important;
-      }
-    }
-
-    .panel-gutter {
-      display: none;
-    }
-
-    .left-panels, .function-code {
-      min-height: 75vh;
-    }
+.is-touch {
+  .editor-body {
+    height: calc(100vh);
   }
 }
