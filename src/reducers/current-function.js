@@ -85,7 +85,7 @@ function stateToRequestData(state) {
         language: details.language,
         libs: details.libs,
         inputs: state.inputs
-      }),
+      }, null, 2),
     },
     [getStatementsFileName(details)]: {
       content: state.statements || DEFAULT_STATMENT
