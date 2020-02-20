@@ -1,5 +1,5 @@
 import React from 'react';
-import { isTouch } from '../../commons/utils/env';
+import Env from '../../commons/utils/env';
 import { HashRouter, Route, Switch } from "react-router-dom";
 
 import Navbar from '../../components/navbar/navbar';
@@ -14,7 +14,7 @@ import './app.scss';
 
 function App() {
   return (
-      <div className={"app" + (isTouch() ? " is-touch" : "")}>
+      <div className={"app" + (Env.isTouch ? " is-touch" : "")}>
         <Navbar />
         <HashRouter basename='/'>
           <Switch>

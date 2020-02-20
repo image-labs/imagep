@@ -7,7 +7,7 @@ function isTouch() {
   return 'ontouchstart' in window;
 };
 
-export {
-  isDev,
-  isTouch,
+export default {
+  isDev: isDev(),
+  isTouch: isTouch(),
 };

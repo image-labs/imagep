@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-import { isDev } from './env';
+import Env from './env';
 
 import GITHUB_CONF from "../../configs/github-conf";
-let authConf = isDev() ? GITHUB_CONF.auth.dev : GITHUB_CONF.auth.prod;
+let authConf = Env.isDev ? GITHUB_CONF.auth.dev : GITHUB_CONF.auth.prod;
 
 const LS_GITHUB_STATE_KEY = "imagep_github_state";
 const LS_ACCESS_TOKEN_KEY = "imagep_access_token";

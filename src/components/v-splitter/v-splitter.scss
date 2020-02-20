@@ -37,10 +37,14 @@
       width: 10px;
       user-select: none;
 
-      i {
+      .gutter-icon {
         position: relative;
         top: 50%;
         left: 7px;
+
+        &.fa-ellipsis-v {
+          margin-top: 7px;
+        }
       }
     }
   }
@@ -58,11 +62,33 @@
   .v-splitter {
     .v-gutter {
       color: transparent;
+
+      .gutter-icon {
+        .fa-arrow-circle-left {
+          position: relative;
+          top: -4px;
+          left: 5px;
+          transition: left $duration ease-in-out;
+        }
+
+        .fa-arrow-circle-right {
+          position: relative;
+          top: -12px;
+          left: -3px;
+          transition: left $duration ease-in-out;
+        }
+      }
     }
 
     &.is-dragging {
       .v-gutter {
         color: $light-dark;
+
+        .gutter-icon {
+          .fa-arrow-circle-left, .fa-arrow-circle-right {
+            left: 2px;
+          }
+        }
       }
     }
   }
