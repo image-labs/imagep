@@ -1,4 +1,5 @@
 import React from 'react';
+import { get } from 'lodash';
 
 import Panel from '../panel/panel';
 import AddLibInput from '../add-lib-input/add-lib-input';
@@ -19,7 +20,8 @@ class FunctionDetailsPanel extends Panel {
   }
 
   render() {
-    const isSaved = this.props.details.gitHubURL ? true : undefined;
+    const isSaved = this.props.details.gitHubURL;
+    const isSignedIn = get(this, "props.currentUser.name");
 
     let starComponent;
     if(isActive(this.props.details.isStarred)) {
@@ -49,11 +51,11 @@ class FunctionDetailsPanel extends Panel {
           <span className="panel-controls">
             <a title="Open in GitHub" target="_blank" rel="noopener noreferrer"
                 href={this.props.details.gitHubURL}
-                className={"fa fa-github " + (isSaved && "active")}
+                className={"fa fa-github" + (isSaved ? " active" : "")}
                 onClick={event => event.stopPropagation()}>
             </a>
             {starComponent}
-            <i className="fa fa-save active" title="Save Function" onClick={event => this.onSave(event)} aria-hidden="true"></i>
+            <i className={"fa fa-save" + (isSignedIn ? " active" : "")} title="Save Function" onClick={event => this.onSave(event)} aria-hidden="true"></i>
           </span>
         </div>
 
